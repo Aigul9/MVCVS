@@ -1,0 +1,58 @@
+﻿@model mvc5.Models.InputForm
+
+<form method="POST" action="/Home/Index">
+    @Html.ValidationSummary(true)
+    <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+        <h2>Редактирование формы</h2>
+        <div>
+            @Html.ValidationMessageFor(model => model.FormName)
+        </div>
+        <div>
+            <input id="idFormName" type="text" name="FormName" value="@Model.FormName" placeholder="Заголовок формы" size="60" class="padding border">
+        </div>
+        <div>
+            <textarea name="FormDescription" value="@Model.FormDescription" cols="62" rows="2" placeholder="Описание формы" class="padding border"></textarea>
+        </div>
+        <p>Поля формы:</p>
+        <div>
+            @Html.ValidationMessageFor(model => model.FieldName)
+        </div>
+        <div>
+            @Html.ValidationMessageFor(model => model.FieldType)
+        </div>
+        <div style="width: 485px;">
+            <div id="all_elements" class="all_elements">
+                <div id="new_element0" class="wrapper" style="height: 40px;">
+                    <div>
+                        <input type="text" name="FieldName" value="@Model.FieldName" placeholder="Заголовок поля" size="27" class="padding padding2 border">
+                        <select name="FieldType" id="idSelect0" onchange="changeText(id)" class="border padding">
+                            <option disabled selected>Тип поля</option>
+                            <option value="@Model.FieldType">Текст - строка</option>
+                            <option value="@Model.FieldType">Текст - абзац</option>
+                            <option value="@Model.FieldType">Один из списка</option>
+                            <option value="@Model.FieldType">Несколько из списка</option>
+                            <option value="@Model.FieldType">Раскрывающийся список</option>
+                        </select>
+                        <span id="link0" class="close" onclick="onDelete(id)"></span>
+                    </div>
+                    <div class="padding2">
+                        <textarea name="FieldDescription" value="@Model.FieldDescription" id="idTextArea0" cols="140" rows="4" style="display: none;" class="border"></textarea>
+                        <input id="idText0" name="FieldDescription" type="hidden" placeholder="Placeholder" size="27" class="border">
+                    </div>
+                    <div style="float: right;">
+                        <input name="IsChecked" value="@Model.IsChecked" id="idCheckBox0" type="hidden">
+                        <label id="requiredQuestion0" style="display: none;">Обязательный вопрос</label>
+                    </div>
+                </div><br>
+            </div>
+            <div class="padding" left="100px" style="float: right;">
+                <div id="addLink" class="padding" style="float: right; margin-top: -10px"><a href="#" onclick="addNewBlock()">+ Добавить поле</a></div>
+                <div>
+                    <div id="counter" title="0" style="margin-top: 15px"></div>
+                    <input type="submit" value="Закрыть" style="width: 90px;">
+                    <input type="submit" value="Сохранить" style="width: 90px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
